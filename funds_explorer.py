@@ -24,7 +24,7 @@ start = st.sidebar.date_input('start date', datetime(2019,1,1))
 end = st.sidebar.date_input('end date', datetime.today())
 
 # Coletando dados do site FundsExplorer e salvando em cache
-@st.cache
+# @st.cache
 def coleta_fundos():
     url = "https://www.fundsexplorer.com.br/ranking"
     agent = {"User-Agent": "Mozilla/5.0"}
@@ -35,7 +35,7 @@ def coleta_fundos():
     return df
 
 # Loop de chamada a função de coleta dos fundos pelo yfinance
-@st.cache
+# @st.cache
 def call_pega_fundos(stock_dict):
     for symbol in symbols:
         # st.write('Buscando symbol:', symbol)
