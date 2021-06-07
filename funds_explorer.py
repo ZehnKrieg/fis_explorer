@@ -6,7 +6,6 @@ import yfinance as yf
 import requests
 from bs4 import BeautifulSoup
 import plotly
-import openpyxl
 import streamlit as st
 import plotly.express as px
 
