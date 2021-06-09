@@ -211,7 +211,9 @@ if(st.sidebar.button("Clique para iniciar a coleta e an√°lise de fundos imobili√
 
     fig2 = px.scatter(stock_info_df, x = 'volatilidade', y = 'p/vpa', color = 'setor', size = 'dy', hover_name= 'ticker', title= "Oportunidades (std x p/vpa x dy por setor):", log_x= True, log_y= True)
     st.write(fig2)
-    
+
+    st.write(stock_dict)
+
     # Criando uma timeline:
     # numeric_df = df.select_dtypes(['float','int'])
     # numeric_cols = numeric_df.columns
@@ -229,25 +231,3 @@ if(st.sidebar.button("Clique para iniciar a coleta e an√°lise de fundos imobili√
     # st.write(fundo)
 
 #Fim
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
