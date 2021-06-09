@@ -103,6 +103,14 @@ def transform_to_number(variable):
     variable = variable.astype(float)
     return variable
 
+def transform_to_dataframe(stock_dict):
+    for stock in stock_dict.keys():
+        stock_dict[stock] = stock_dict[stock].reset_index()
+        stock_dict[stock]['symbol'] = stock
+ 
+    stock_dict = pd.concat(stock_dict, ignore_index=True)
+    return stock_dict
+
 # Programando o Botão de inicio
 if(st.sidebar.button("Clique para iniciar a coleta e análise de fundos imobiliários")):
 
@@ -212,8 +220,15 @@ if(st.sidebar.button("Clique para iniciar a coleta e análise de fundos imobili�
     fig2 = px.scatter(stock_info_df, x = 'volatilidade', y = 'p/vpa', color = 'setor', size = 'dy', hover_name= 'ticker', title= "Oportunidades (std x p/vpa x dy por setor):", log_x= True, log_y= True)
     st.write(fig2)
 
-    st.write(stock_dict)
+    with st.spinner('Preparando timeline de symbols...'):
+        time.sleep(2)
 
+    stock_dict = transform_to_dataframe(stock_dict)
+
+    # stock_dict = stock_dict.sort_values(by='symbol')
+    fig = px.line(stock_dict, x = 'Date', y = 'Adj Close', color = 'symbol', title= "Timeline de fechamento por Symbol")
+    st.write(fig)
+    
     # Criando uma timeline:
     # numeric_df = df.select_dtypes(['float','int'])
     # numeric_cols = numeric_df.columns
